@@ -1,16 +1,17 @@
-import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import Layout from '@component/components/Layout'
-import HexbinMap from "@component/components/HexbinMap"
+import Hex from "@component/components/Hex"
 
 const inter = Inter({ subsets: ['latin'] })
+
 
 export default function Home() {
   return (
     <>
     <Layout>
     </Layout>
-    <HexbinMap></HexbinMap>
+    <Hex></Hex>
+    
     </>
   )
 }
