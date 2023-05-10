@@ -2,7 +2,10 @@ import React, {useRef, useEffect} from "react";
 import {Runtime, Inspector} from "./runtime.js";
 import define from "@component/LocalHexbinMap.js";
 
+
+
 function Hex() {
+  
     const chartRef = useRef();
   
     useEffect(() => {
@@ -12,6 +15,7 @@ function Hex() {
       });
       return () => runtime.dispose();
     }, []);
+
   
     return (
       <>
