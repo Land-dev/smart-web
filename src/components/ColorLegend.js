@@ -337,6 +337,8 @@ function Swatches(color, {
 }
 )}
 
+
+
 function _swatches(Swatches){return(
 function swatches({color, ...options}) {
   return Swatches(color, options);

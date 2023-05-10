@@ -6,11 +6,15 @@ function _1(md){return(
   
   This map shows approximately 3,000 locations of Walmart stores. The hexagon area represents the number of stores in the vicinity, while the color represents the median age of these stores. Older stores are red, and newer stores are blue.`
   )}
+
+  
   
   function _chart(d3,width,height,legend,color,data,topojson,us,hexbin,radius)
   {
     const svg = d3.create("svg")
         .attr("viewBox", [0, 0, width, height]);
+
+    
   
     svg.append("g")
         .attr("transform", "translate(610,20)")
@@ -21,6 +25,8 @@ function _1(md){return(
           tickValues: d3.utcYear.every(5).range(...color.domain()),
           tickFormat: d3.utcFormat("%Y")
         }));
+
+        
   
     svg.append("path")
         .datum(topojson.mesh(us, us.objects.states))
@@ -30,6 +36,10 @@ function _1(md){return(
         .attr("stroke-linejoin", "round")
         .attr("d", d3.geoPath());
   
+
+    
+
+
     svg.append("g")
       .selectAll("path")
       .data(data)
@@ -40,11 +50,59 @@ function _1(md){return(
         .attr("stroke", d => d3.lab(color(d.date)).darker())
       .append("title")
         .text(d => `${d.length.toLocaleString()} stores
+
   ${d.date.getFullYear()} median opening`);
+
+  //Carson City
+  svg.append("circle")
+         .attr("transform", "translate(86.5,240)")
+         .attr("fill", "black")
+         .attr("stroke", "black")
+         .attr("r", 5)
+         .append("title")
+         .text("Carson City Station");
+
+  //Harris Station
+  svg.append("circle")
+         .attr("transform", "translate(86.5,360)")
+         .attr("fill", "black")
+         .attr("stroke", "black")
+         .attr("r", 5)
+         .append("title")
+         .text("Harris Station");
+
+  //St. Petersburg Station
+  svg.append("circle")
+         .attr("transform", "translate(190,570)")
+         .attr("fill", "black")
+         .attr("stroke", "black")
+         .attr("r", 5)
+         .append("title")
+         .text("St. Petersburg Station");
+
+  //Remus Station
+  svg.append("circle")
+         .attr("transform", "translate(675,180)")
+         .attr("fill", "black")
+         .attr("stroke", "black")
+         .attr("r", 5)
+         .append("title")
+         .text("Remus Station");
+
+  //Shawano Station
+  svg.append("circle")
+         .attr("transform", "translate(615,165)")
+         .attr("fill", "black")
+         .attr("stroke", "black")
+         .attr("r", 5)
+         .append("title")
+         .text("Shawano Station");
+  
+         
   
     return svg.node();
   }
-  
+
   
   async function _data(d3,FileAttachment,projection,parseDate,hexbin)
   {
@@ -101,12 +159,14 @@ function _1(md){return(
   function _d3(require){return(
   require("d3@6", "d3-hexbin@0.2")
   )}
+
   
   export default function define(runtime, observer) {
     const main = runtime.module();
     function toString() { return this.url; }
     const fileAttachments = new Map([
-      ["walmart.tsv", {url: new URL("./data/walmartEdited.tsv", import.meta.url), mimeType: "text/tab-separated-values", toString}],
+      ["stations.tsv", {url: new URL("./data/stations.tsv", import.meta.url), mimeType: "text/tab-separated-values", toString}],
+      ["walmart.tsv", {url: new URL("./data/stations.tsv", import.meta.url), mimeType: "text/tab-separated-values", toString}],
       ["states-albers-10m.json", {url: new URL("./data/UnitedStates.json", import.meta.url), mimeType: "application/json", toString}]
     ]);
     main.builtin("FileAttachment", runtime.fileAttachments(name => fileAttachments.get(name)));
