@@ -1,4 +1,5 @@
 // https://observablehq.com/@d3/hexbin-map@190
+import { link } from "d3";
 import define1 from "./components/ColorLegend";
 
 function _1(md){return(
@@ -61,6 +62,7 @@ function _1(md){return(
          .attr("r", 5)
          .append("title")
          .text("Carson City Station");
+         
 
   //Harris Station
   svg.append("circle")
