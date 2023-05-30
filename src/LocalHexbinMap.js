@@ -44,7 +44,9 @@ function _1(md){return(
     svg.append("g")
       .selectAll("path")
       .data(data)
-      .join("path")
+      .join("a")
+        .attr("xlink:href", d => `/data`)
+      .append("path")
         .attr("transform", d => `translate(${d.x},${d.y})`)
         .attr("d", d => hexbin.hexagon(radius(d.length)))
         .attr("fill", d => color(d.date))
@@ -55,17 +57,20 @@ function _1(md){return(
   ${d.date.getFullYear()} median opening`);
 
   //Carson City
-  svg.append("circle")
+  svg.append("a").attr("xlink:href", "/data/carson-city")
+  .append("circle")
          .attr("transform", "translate(86.5,240)")
          .attr("fill", "black")
          .attr("stroke", "black")
          .attr("r", 5)
          .append("title")
-         .text("Carson City Station");
+         .text("Carson City Station")
+         .on("click", function() { window.open("https://www.google.com/" ); });
          
 
   //Harris Station
-  svg.append("circle")
+  svg.append("a").attr("xlink:href", "/data/carson-city")
+  .append("circle")
          .attr("transform", "translate(86.5,360)")
          .attr("fill", "black")
          .attr("stroke", "black")
@@ -74,7 +79,8 @@ function _1(md){return(
          .text("Harris Station");
 
   //St. Petersburg Station
-  svg.append("circle")
+  svg.append("a").attr("xlink:href", "/data/st-petersburg")
+  .append("circle")
          .attr("transform", "translate(190,570)")
          .attr("fill", "black")
          .attr("stroke", "black")
@@ -83,7 +89,8 @@ function _1(md){return(
          .text("St. Petersburg Station");
 
   //Remus Station
-  svg.append("circle")
+  svg.append("a").attr("xlink:href", "/data/remus")
+  .append("circle")
          .attr("transform", "translate(675,180)")
          .attr("fill", "black")
          .attr("stroke", "black")
@@ -92,7 +99,8 @@ function _1(md){return(
          .text("Remus Station");
 
   //Shawano Station
-  svg.append("circle")
+  svg.append("a").attr("xlink:href", "/data/shawano")
+  .append("circle")
          .attr("transform", "translate(615,165)")
          .attr("fill", "black")
          .attr("stroke", "black")
